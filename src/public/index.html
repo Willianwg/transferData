@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Transfer</title>
+        <style>
+        
+        </style>
+       <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <p>Transfer</p>
+
+        <script type="module">
+
+            const socket = io();
+
+            socket.on('connect', ()=>{
+                const playerId = socket.id;
+            })
+
+
+        </script>
+    </body>
+</html>
