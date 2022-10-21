@@ -4,21 +4,47 @@
         <meta charset="utf-8">
         <title>Transfer</title>
         <style>
-        
+            #input {
+                width: 300px;
+                height: 300px;
+                padding: 10px;
+            }
+
+            body {
+                display: flex;
+            }
+
         </style>
        <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
-        <p>Transfer</p>
-
+        <div>
+            <p>Transfer</p>
+            <div style="display: flex;">
+                <div>
+                    <textarea id='input'></textarea>
+                    <button id="btn">Apply</button>
+                </div>
+                <div id="text"></div>
+            </div>
+        </div>
         <script type="module">
 
+            const text = document.getElementById('text');
+            const input = document.getElementById('input');
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", handleClick, false);
+
+            function handleClick(event){
+                event.preventDefault();
+                socket.emit('transferData', input.value);
+            }
+
             const socket = io();
-
-            socket.on('connect', ()=>{
-                const playerId = socket.id;
+            
+            socket.on('transferData', (data)=>{
+                text.innerText = data;
             })
-
 
         </script>
     </body>
