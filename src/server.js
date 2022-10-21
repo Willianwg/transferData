@@ -8,16 +8,16 @@ const server = http.createServer(app);
 const sockets = new Server(server);
 
 const addresses = {}
-let txt;
+let txt = {}
 
 app.use( express.static(path.join(__dirname,'public')) );
 
 sockets.on('connection', (socket)=>{
     const userId = socket.id; 
     const userIP = socket.handshake.address;
-
-    if(txt){
-        socket.emit('transferData', txt);
+    
+    if(txt[userIP]){
+        socket.emit('transferData', txt[userIP]);
     }
 
     addresses[userIP] ? addresses[userIP].push(userId) : addresses[userIP] = [userId];
@@ -25,7 +25,7 @@ sockets.on('connection', (socket)=>{
     console.log('User: ' + userId + ' Entrou com o ip: ' + userIP);
 
     socket.on('transferData', (data)=>{
-        txt = data;
+        txt[userIP] = data;
         sockets.emit('transferData', data);
     })
 
