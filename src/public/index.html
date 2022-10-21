@@ -10,6 +10,10 @@
                 padding: 10px;
             }
 
+            #room {
+                margin-bottom: 10px;
+            }
+
             body {
                 display: flex;
             }
@@ -19,11 +23,15 @@
     </head>
     <body>
         <div>
-            <p>Transfer</p>
+            <div>
+                <p>Transfer</p>
+                <input id="room"/>
+                <button id="join-btn">Join</button>
+            </div>
             <div style="display: flex;">
                 <div>
-                    <textarea id='input'></textarea>
-                    <button id="btn">Apply</button>
+                    <textarea id='contentInput'></textarea>
+                    <button id="apply-btn">Apply</button>
                 </div>
                 <div id="text"></div>
             </div>
@@ -31,19 +39,38 @@
         <script type="module">
 
             const text = document.getElementById('text');
-            const input = document.getElementById('input');
-            var btn = document.getElementById("btn");
-            btn.addEventListener("click", handleClick, false);
+            const roomInput = document.getElementById('room');
+            const contentInput = document.getElementById('contentInput');
+            const joinButton = document.getElementById("join-btn");
+            joinButton.addEventListener("click", handleJoin, false);
+            const applyButton = document.getElementById("apply-btn");
+            applyButton.addEventListener("click", handleApply, false);
 
-            function handleClick(event){
+            let myRoom;
+
+            function handleJoin(event){
                 event.preventDefault();
-                socket.emit('transferData', input.value);
+                socket.emit('join', roomInput.value);
+                myRoom = roomInput.value;
+            }
+
+            function handleApply(event){
+                event.preventDefault();
+
+                if(!myRoom) return;
+
+                const roomData = {
+                    text: contentInput.value,
+                    room: myRoom
+                }
+
+                socket.emit('transferData', roomData);
             }
 
             const socket = io();
             
-            socket.on('transferData', (data)=>{
-                text.innerText = data;
+            socket.on('message', (message)=>{
+                text.innerText = message;
             })
 
         </script>
