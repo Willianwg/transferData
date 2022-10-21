@@ -8,8 +8,7 @@ const server = http.createServer(app);
 const sockets = new Server(server);
 
 const rooms = {};
-let txt = {}
-
+const usersSpot = {}
 
 function isUserIn(userId, room){
     const user = rooms[room].users.find(item=>item === userId);
@@ -19,18 +18,23 @@ function isUserIn(userId, room){
 
 function joinUser(userId, room){
     if(isUserIn(userId,room)) return;
+    removeUserFromTheLastRoom(userId);
 
+    usersSpot[userId] = room;
     rooms[room].users.push(userId);
+    console.log(userId + ' ENTROU NO QUARTO: ' + room );
     getMessage(room);
 }
 
 function createRoom(userId, room){
+    removeUserFromTheLastRoom(userId);
      rooms[room] = [userId];
-
      rooms[room] = {
         users:[userId],
         text:''
      }
+     usersSpot[userId] = room;
+     console.log(userId + ' CRIOU O QUARTO: ' + room );
 }
 
 function getMessage(room){
@@ -38,6 +42,17 @@ function getMessage(room){
         sockets.to(id).emit('message', rooms[room].text);
     })
 }
+
+function removeUserFromTheLastRoom(userId){
+    if(!usersSpot[userId]) return;
+
+    const room = usersSpot[userId]; 
+
+    const index = rooms[room].users.indexOf(userId);
+    rooms[room].users.splice(index,1);
+    console.log(userId + ' REMOVIDO DO QUARTO: ' + room );
+}
+
 
 app.use( express.static(path.join(__dirname,'public')) );
 
@@ -60,6 +75,9 @@ sockets.on('connection', (socket)=>{
         console.log(rooms[room])
     })
 
+    socket.on('disconnect', ()=>{
+        removeUserFromTheLastRoom(userId);
+    })
 })
 
 server.listen(3000);
