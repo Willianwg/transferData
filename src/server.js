@@ -26,7 +26,10 @@ sockets.on('connection', (socket)=>{
 
     socket.on('transferData', (data)=>{
         txt[userIP] = data;
-        sockets.emit('transferData', data);
+
+        addresses[userIP].map(id=>{
+            sockets.to(id).emit('transferData', data);
+        })
     })
 
 })
