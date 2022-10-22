@@ -2,8 +2,11 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path')
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+
 const server = http.createServer(app);
 const sockets = new Server(server);
 
@@ -22,7 +25,6 @@ function joinUser(userId, room){
 
     usersSpot[userId] = room;
     rooms[room].users.push(userId);
-    console.log(userId + ' ENTROU NO QUARTO: ' + room );
     getMessage(room);
 }
 
@@ -34,7 +36,6 @@ function createRoom(userId, room){
         text:''
      }
      usersSpot[userId] = room;
-     console.log(userId + ' CRIOU O QUARTO: ' + room );
 }
 
 function getMessage(room){
@@ -50,7 +51,6 @@ function removeUserFromTheLastRoom(userId){
 
     const index = rooms[room].users.indexOf(userId);
     rooms[room].users.splice(index,1);
-    console.log(userId + ' REMOVIDO DO QUARTO: ' + room );
 }
 
 
@@ -58,9 +58,6 @@ app.use( express.static(path.join(__dirname,'public')) );
 
 sockets.on('connection', (socket)=>{
     const userId = socket.id; 
-    const userIP = socket.handshake.address;
-
-    console.log('User: ' + userId + ' Entrou com o ip: ' + userIP);
 
     socket.on('transferData', (roomData)=>{
         const { room, text } = roomData;
@@ -70,9 +67,7 @@ sockets.on('connection', (socket)=>{
     })
 
     socket.on('join', (room)=>{
-        console.log(room)
         rooms[room] ? joinUser(userId, room) : createRoom(userId, room);
-        console.log(rooms[room])
     })
 
     socket.on('disconnect', ()=>{
