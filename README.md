@@ -15,3 +15,5 @@ Após isso já é possível enviar seu texto entre todos os dispositivos que ent
 Pronto! todos conectados a sala receberão sua mensagem.
 
 TransferData é uma aplicação feita para que torne simples a transferencia de textos entre dispositivos como um computador e um celular, sem a necessidade de qualquer instalação, login ou cadastro.
+
+Completamente sem estilização, apenas funcionalidades.
