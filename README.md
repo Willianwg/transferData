@@ -10,8 +10,14 @@ Mas pra que tudo isso se só quero enviar um simples texto? e se eu não quiser 
 
 Você pode utilizar o TransferData (nome de prototipo kkkk)
 A aplicação só possui dois campos e dois botões.
-Com ela você só precisa entrar no site em ambos dispositivos, preencher o primeiro campo com um nome a sua escolha, e clicar no botão 'Join' (escolha um nome que não seja comum).
-Após isso já é possível enviar seu texto entre todos os dispositivos que entraram nesta mesma sala com seu nome escolhido, simplesmente escreva seu texto no segundo campo e aperte em 'Apply'.
+Com ela você só precisa:
+
+- Entrar no site em ambos dispositivos
+- Preencher o primeiro campo com um nome da sua escolha (escolha um nome que não seja comum).
+- Clicar no botão 'Join'.
+- Preencher o segundo campo com o texto que quer compartilhar.
+- Clicar em 'Apply'.
+
 Pronto! todos conectados a sala receberão sua mensagem.
 
 TransferData é uma aplicação feita para que torne simples a transferencia de textos entre dispositivos como um computador e um celular, sem a necessidade de qualquer instalação, login ou cadastro.
