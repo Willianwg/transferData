@@ -11,6 +11,7 @@ const upload = multer(uploadConfig);
 
 const app = express();
 app.use(cors());
+app.use(express.json())
 
 const server = http.createServer(app);
 const sockets = new Server(server);
@@ -78,6 +79,10 @@ sockets.on('connection', (socket)=>{
     socket.on('disconnect', ()=>{
         removeUserFromTheLastRoom(userId);
     })
+})
+
+app.post("/upload", upload.single("image"),(req,res)=>{
+    return res.status(200).json({ message: "Your image has been uploaded!"});
 })
 
 server.listen(process.env.PORT || 3000);

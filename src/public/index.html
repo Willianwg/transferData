@@ -23,6 +23,7 @@
 
         </style>
        <script src="/socket.io/socket.io.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
         <div id="form">
@@ -38,6 +39,7 @@
                 </div>
             </div>
             <div id="text"></div>
+            <input type="file" name="image" id="image"/>
         </div>
         <script type="module">
 
@@ -47,7 +49,31 @@
             const joinButton = document.getElementById("join-btn");
             joinButton.addEventListener("click", handleJoin, false);
             const applyButton = document.getElementById("apply-btn");
+
             applyButton.addEventListener("click", handleApply, false);
+            
+            const api = axios.create({
+                baseURL:"http://localhost:3000"
+            })
+
+            const imageInput = document.getElementById("image");
+            image.addEventListener("change", handleImageChange);
+
+            function handleImageChange(event){
+                const image = event.target.files[0];
+
+                const data = new FormData();
+                data.append("image", image);
+                data.append("name", "Test");
+
+                upload(data);
+            }
+
+            async function upload(data){
+               const response = await api.post("/upload", data);
+
+                console.log(response.data);
+            }
 
             let myRoom;
 
