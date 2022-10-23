@@ -6,7 +6,7 @@ const { Server } = require('socket.io');
 const path = require('path')
 const cors = require('cors');
 const multer = require('multer');
-const uploadConfig() = require('./config/upload.js');
+const uploadConfig = require('./config/upload.js');
 const upload = multer(uploadConfig);
 
 const app = express();
