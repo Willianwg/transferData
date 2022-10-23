@@ -42,62 +42,33 @@
             <input type="file" name="image" id="image"/>
         </div>
         <script type="module">
+            import useApi from "./scripts/api.js";
+            import createListener from "./scripts/createEventListener.js"
+            import getElementById from "./scripts/getElement.js";
+            import handleJoinRoom from "./scripts/handleJoin.js";
+            import handleChange from "./scripts/handleChange.js";
+            import handleApplyContent from "./scripts/handleApply.js";
+            import createUser from "./scripts/createUser.js";
 
-            const text = document.getElementById('text');
-            const roomInput = document.getElementById('room');
-            const contentInput = document.getElementById('contentInput');
-            const joinButton = document.getElementById("join-btn");
-            joinButton.addEventListener("click", handleJoin, false);
-            const applyButton = document.getElementById("apply-btn");
-
-            applyButton.addEventListener("click", handleApply, false);
-            
-            const api = axios.create({
-                baseURL:"http://localhost:3000"
-            })
-
-            const imageInput = document.getElementById("image");
-            image.addEventListener("change", handleImageChange);
-
-            function handleImageChange(event){
-                const image = event.target.files[0];
-
-                const data = new FormData();
-                data.append("image", image);
-                data.append("name", "Test");
-
-                upload(data);
-            }
-
-            async function upload(data){
-               const response = await api.post("/upload", data);
-
-                console.log(response.data);
-            }
-
-            let myRoom;
-
-            function handleJoin(event){
-                event.preventDefault();
-                socket.emit('join', roomInput.value);
-                myRoom = roomInput.value;
-            }
-
-            function handleApply(event){
-                event.preventDefault();
-
-                if(!myRoom) return;
-
-                const roomData = {
-                    text: contentInput.value,
-                    room: myRoom
-                }
-
-                socket.emit('transferData', roomData);
-            }
-
+            const api = useApi(axios);
             const socket = io();
-            
+
+            const text = getElementById(document,"text");
+            const roomInput = getElementById(document,"room");
+            const contentInput = getElementById(document,"contentInput");
+            const joinButton = getElementById(document,"join-btn");
+            const applyButton = getElementById(document,"apply-btn");
+            const imageInput = getElementById(document,"image");
+            const user = createUser();
+
+            const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user);
+            const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
+            const handleImageChange = (event) => handleChange(event, api.uploadImage);
+         
+            createListener(joinButton,"click", handleJoin);
+            createListener(applyButton,"click", handleApply);
+            createListener(imageInput ,"change", handleImageChange);
+
             socket.on('message', (message)=>{
                 text.innerText = message;
             })
