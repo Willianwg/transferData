@@ -9,14 +9,16 @@ Provavelmente as pessoas pensariam em:
 Mas pra que tudo isso se só quero enviar um simples texto? e se eu não quiser instalar nada no meu celular, e nem quiser fazer um cadastro?
 
 Você pode utilizar o TransferData (nome de prototipo kkkk)
-A aplicação só possui dois campos e dois botões.
-Com ela você só precisa:
 
-- Entrar no site em ambos dispositivos
-- Preencher o primeiro campo com um nome da sua escolha (escolha um nome que não seja comum).
-- Clicar no botão 'Join'.
-- Preencher o segundo campo com o texto que quer compartilhar.
-- Clicar em 'Apply'.
+A aplicação só possui dois campos e dois botões, tornando tudo mais simplificado.
+
+## Passo a Passo
+
+- Entre no site em ambos dispositivos
+- Preencha o primeiro campo com um nome da sua escolha (escolha um nome que não seja comum).
+- Clique no botão 'Join'.
+- Preencha o segundo campo com o texto que quer compartilhar.
+- Clique em 'Apply'.
 
 Pronto! todos conectados a sala receberão sua mensagem.
 
