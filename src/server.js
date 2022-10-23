@@ -5,6 +5,9 @@ const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path')
 const cors = require('cors');
+const multer = require('multer');
+const uploadConfig() = require('./config/upload.js');
+const upload = multer(uploadConfig);
 
 const app = express();
 app.use(cors());
@@ -13,7 +16,7 @@ const server = http.createServer(app);
 const sockets = new Server(server);
 
 const rooms = {};
-const usersSpot = {}
+const usersSpot = {};
 
 function isUserIn(userId, room){
     const user = rooms[room].users.find(item=>item === userId);
