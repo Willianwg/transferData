@@ -36,11 +36,12 @@
                 <div>
                     <textarea id='contentInput'></textarea>
                     <button id="apply-btn">Apply</button>
+                    <input type="file" name="image" id="image"/>
                 </div>
             </div>
             <div id="text"></div>
-            <input type="file" name="image" id="image"/>
         </div>
+        
         <script type="module">
             import useApi from "./scripts/api.js";
             import createListener from "./scripts/createEventListener.js"
@@ -63,11 +64,20 @@
 
             const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user);
             const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
-            const handleImageChange = (event) => handleChange(event, api.uploadImage);
+            const handleImageChange = (event) => handleChange(event, api.uploadImage, setImage);
          
             createListener(joinButton,"click", handleJoin);
             createListener(applyButton,"click", handleApply);
             createListener(imageInput ,"change", handleImageChange);
+
+            function setImage(filename){
+                const image = document.createElement("img");
+                image.width = 300;
+                image.height = 300;
+                image.src = `http://localhost:3000/files/${filename}`;
+
+                text.appendChild(image);
+            }
 
             socket.on('message', (message)=>{
                 text.innerText = message;

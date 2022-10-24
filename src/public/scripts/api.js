@@ -3,9 +3,10 @@ export default function useApi(axios){
         baseURL:"http://localhost:3000"
     })
 
-     async function uploadImage(data){
+     async function uploadImage(data, setImage){
         const response = await api.post("/upload", data);
-        console.log(response.data);
+        
+        setImage(response.data.filename);
     }
 
     return {

@@ -22,8 +22,8 @@ app.use( express.static(path.join(__dirname,'public')) );
 app.use("/files", express.static(path.resolve (__dirname, "..", "images")));
 
 app.post("/upload", upload.single("image"),(req,res)=>{
-    console.log(req.file.filename);
-    return res.status(200).json({ message: "Your image has been uploaded!"});
+    const { filename } = req.file;
+    return res.json({ filename });
 })
 
 server.listen(process.env.PORT || 3000);
