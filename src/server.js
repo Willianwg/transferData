@@ -9,6 +9,7 @@ const multer = require('multer');
 const uploadConfig = require('./config/upload.js');
 const upload = multer(uploadConfig);
 const websockets = require('./sockets.js');
+const deleteImage = require("./deleteImage");
 
 const app = express();
 app.use(cors());
@@ -23,6 +24,8 @@ app.use("/files", express.static(path.resolve (__dirname, "..", "images")));
 
 app.post("/upload", upload.single("image"),(req,res)=>{
     const { filename } = req.file;
+    deleteImage(filename);
+
     return res.json({ filename });
 })
 
