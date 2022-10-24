@@ -15,6 +15,13 @@ function websockets(sockets){
         socket.on('join', (room)=>{
             rooms[room] ? joinUser(userId, room) : createRoom(userId, room);
         })
+
+        socket.on("imageUpload", (data) =>{
+            const { room, filename } = data;
+            rooms[room].users.map(id=>{
+                sockets.to(id).emit('newImage', filename );
+            })
+        })
     
         socket.on('disconnect', ()=>{
             removeUserFromTheLastRoom(userId);
