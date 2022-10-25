@@ -22,6 +22,15 @@ A aplicação só possui dois campos e dois botões, tornando tudo mais simplifi
 
 Pronto! todos conectados a sala receberão sua mensagem.
 
-TransferData é uma aplicação feita para que torne simples a transferencia de textos entre dispositivos como um computador e um celular, sem a necessidade de qualquer instalação, login ou cadastro.
+## Formatos suportados
+
+- Texto
+- Imagem (png/jpg)
+
+Imagens são apagadas após dois minutos de seu upload.
+
+## Resumo
+
+TransferData é uma aplicação feita para que torne simples a transferencia de textos e imagens entre dispositivos como um computador e um celular, sem a necessidade de qualquer instalação, login ou cadastro.
 
 Completamente sem estilização, apenas funcionalidades.
