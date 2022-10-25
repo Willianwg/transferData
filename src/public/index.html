@@ -23,6 +23,7 @@
 
         </style>
        <script src="/socket.io/socket.io.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
         <div id="form">
@@ -31,49 +32,73 @@
                 <input id="room"/>
                 <button id="join-btn">Join</button>
             </div>
-            <div style="display: flex;">
+            <div style="display: flex; margin-bottom: 20px;">
                 <div>
                     <textarea id='contentInput'></textarea>
                     <button id="apply-btn">Apply</button>
+                    <input type="file" name="image" id="image"/>
                 </div>
             </div>
+            <div id="imageDiv"></div>
             <div id="text"></div>
         </div>
+
         <script type="module">
+            import useApi from "./scripts/api.js";
+            import createListener from "./scripts/createEventListener.js"
+            import getElementById from "./scripts/getElement.js";
+            import handleJoinRoom from "./scripts/handleJoin.js";
+            import handleChange from "./scripts/handleChange.js";
+            import handleApplyContent from "./scripts/handleApply.js";
+            import createUser from "./scripts/createUser.js";
 
-            const text = document.getElementById('text');
-            const roomInput = document.getElementById('room');
-            const contentInput = document.getElementById('contentInput');
-            const joinButton = document.getElementById("join-btn");
-            joinButton.addEventListener("click", handleJoin, false);
-            const applyButton = document.getElementById("apply-btn");
-            applyButton.addEventListener("click", handleApply, false);
-
-            let myRoom;
-
-            function handleJoin(event){
-                event.preventDefault();
-                socket.emit('join', roomInput.value);
-                myRoom = roomInput.value;
-            }
-
-            function handleApply(event){
-                event.preventDefault();
-
-                if(!myRoom) return;
-
-                const roomData = {
-                    text: contentInput.value,
-                    room: myRoom
-                }
-
-                socket.emit('transferData', roomData);
-            }
-
+            const api = useApi(axios);
             const socket = io();
-            
-            socket.on('message', (message)=>{
-                text.innerText = message;
+
+            const text = getElementById(document,"text");
+            const imageDiv = getElementById(document,"imageDiv");
+            const roomInput = getElementById(document,"room");
+            const contentInput = getElementById(document,"contentInput");
+            const joinButton = getElementById(document,"join-btn");
+            const applyButton = getElementById(document,"apply-btn");
+            const imageInput = getElementById(document,"image");
+            const user = createUser();
+
+            const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user);
+            const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
+            const handleImageChange = (event) => {
+                if(!user.room) return imageInput.value = null;
+                handleChange(event, api.uploadImage, emitImage);
+            }
+         
+            createListener(joinButton,"click", handleJoin);
+            createListener(applyButton,"click", handleApply);
+            createListener(imageInput ,"change", handleImageChange);
+
+            function setImage(filename){
+                imageDiv.innerHTML = '';
+                imageInput.value = null;
+                if(!filename) return;
+                const image = document.createElement("img");
+                image.width = 300;
+                image.height = 300;
+                image.src = `http://localhost:3000/files/${filename}`;
+
+                imageDiv.appendChild(image);
+
+            }
+
+            function emitImage(filename){
+                const data = {
+                    room:user.room,
+                    filename
+                }
+                socket.emit("imageUpload", data);
+            }
+
+            socket.on('message', (roomData)=>{
+                text.innerText = roomData.text;
+                setImage(roomData.image);
             })
 
         </script>

@@ -5,76 +5,32 @@ const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path')
 const cors = require('cors');
+const multer = require('multer');
+const uploadConfig = require('./config/upload.js');
+const upload = multer(uploadConfig);
+const websockets = require('./sockets.js');
+const deleteImage = require("./deleteImage");
 
 const app = express();
 app.use(cors());
+app.use(express.json())
 
 const server = http.createServer(app);
 const sockets = new Server(server);
-
-const rooms = {};
-const usersSpot = {}
-
-function isUserIn(userId, room){
-    const user = rooms[room].users.find(item=>item === userId);
-
-    return !!user;
-}
-
-function joinUser(userId, room){
-    if(isUserIn(userId,room)) return;
-    removeUserFromTheLastRoom(userId);
-
-    usersSpot[userId] = room;
-    rooms[room].users.push(userId);
-    getMessage(room);
-}
-
-function createRoom(userId, room){
-    removeUserFromTheLastRoom(userId);
-     rooms[room] = [userId];
-     rooms[room] = {
-        users:[userId],
-        text:''
-     }
-     usersSpot[userId] = room;
-}
-
-function getMessage(room){
-    rooms[room].users.map(id=>{
-        sockets.to(id).emit('message', rooms[room].text);
-    })
-}
-
-function removeUserFromTheLastRoom(userId){
-    if(!usersSpot[userId]) return;
-
-    const room = usersSpot[userId]; 
-
-    const index = rooms[room].users.indexOf(userId);
-    rooms[room].users.splice(index,1);
-}
-
+websockets(sockets);
 
 app.use( express.static(path.join(__dirname,'public')) );
+app.use("/files", express.static(path.resolve (__dirname, "..", "images")));
 
-sockets.on('connection', (socket)=>{
-    const userId = socket.id; 
+app.post("/upload", upload.single("image"),(req,res)=>{
+    try{
+        const { filename } = req.file;
+        deleteImage(filename);
 
-    socket.on('transferData', (roomData)=>{
-        const { room, text } = roomData;
-        rooms[room].text = text;
-
-        getMessage(room);
-    })
-
-    socket.on('join', (room)=>{
-        rooms[room] ? joinUser(userId, room) : createRoom(userId, room);
-    })
-
-    socket.on('disconnect', ()=>{
-        removeUserFromTheLastRoom(userId);
-    })
+        return res.json({ filename });
+    }catch(err){
+        return res.status(400).json({ err });
+    }
 })
 
 server.listen(process.env.PORT || 3000);
