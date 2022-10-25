@@ -18,6 +18,8 @@ function websockets(sockets){
 
         socket.on("imageUpload", (data) =>{
             const { room, filename } = data;
+            rooms[room].image = filename;
+
             rooms[room].users.map(id=>{
                 sockets.to(id).emit('newImage', filename );
             })
@@ -54,8 +56,12 @@ function websockets(sockets){
     }
     
     function getMessage(room){
+       const roomData = {
+            text: rooms[room].text || "",
+            image: rooms[room].image || ""
+        }
         rooms[room].users.map(id=>{
-            sockets.to(id).emit('message', rooms[room].text);
+            sockets.to(id).emit('message', roomData);
         })
     }
     

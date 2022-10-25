@@ -23,10 +23,14 @@ app.use( express.static(path.join(__dirname,'public')) );
 app.use("/files", express.static(path.resolve (__dirname, "..", "images")));
 
 app.post("/upload", upload.single("image"),(req,res)=>{
-    const { filename } = req.file;
-    deleteImage(filename);
+    try{
+        const { filename } = req.file;
+        deleteImage(filename);
 
-    return res.json({ filename });
+        return res.json({ filename });
+    }catch(err){
+        return res.status(400).json({ err });
+    }
 })
 
 server.listen(process.env.PORT || 3000);

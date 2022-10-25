@@ -87,8 +87,9 @@
                 socket.emit("imageUpload", data);
             }
 
-            socket.on('message', (message)=>{
-                text.innerText = message;
+            socket.on('message', (roomData)=>{
+                text.innerText = roomData.text;
+                roomData.image ? setImage(roomData.image) : null;
             })
 
             socket.on('newImage', (filename) =>{
