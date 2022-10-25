@@ -32,13 +32,14 @@
                 <input id="room"/>
                 <button id="join-btn">Join</button>
             </div>
-            <div style="display: flex;">
+            <div style="display: flex; margin-bottom: 20px;">
                 <div>
                     <textarea id='contentInput'></textarea>
                     <button id="apply-btn">Apply</button>
                     <input type="file" name="image" id="image"/>
                 </div>
             </div>
+            <div id="imageDiv"></div>
             <div id="text"></div>
         </div>
 
@@ -55,6 +56,7 @@
             const socket = io();
 
             const text = getElementById(document,"text");
+            const imageDiv = getElementById(document,"imageDiv");
             const roomInput = getElementById(document,"room");
             const contentInput = getElementById(document,"contentInput");
             const joinButton = getElementById(document,"join-btn");
@@ -64,19 +66,26 @@
 
             const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user);
             const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
-            const handleImageChange = (event) => handleChange(event, api.uploadImage, emitImage);
+            const handleImageChange = (event) => {
+                if(!user.room) return imageInput.value = null;
+                handleChange(event, api.uploadImage, emitImage);
+            }
          
             createListener(joinButton,"click", handleJoin);
             createListener(applyButton,"click", handleApply);
             createListener(imageInput ,"change", handleImageChange);
 
             function setImage(filename){
+                imageDiv.innerHTML = '';
+                imageInput.value = null;
+                if(!filename) return;
                 const image = document.createElement("img");
                 image.width = 300;
                 image.height = 300;
                 image.src = `http://localhost:3000/files/${filename}`;
 
-                text.appendChild(image);
+                imageDiv.appendChild(image);
+
             }
 
             function emitImage(filename){
@@ -89,11 +98,7 @@
 
             socket.on('message', (roomData)=>{
                 text.innerText = roomData.text;
-                roomData.image ? setImage(roomData.image) : null;
-            })
-
-            socket.on('newImage', (filename) =>{
-                setImage(filename);
+                setImage(roomData.image);
             })
 
         </script>

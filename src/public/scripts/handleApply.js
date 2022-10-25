@@ -9,4 +9,5 @@ export default function handleApply(event, socket, contentInput, user){
     }
 
     socket.emit('transferData', roomData);
+    contentInput.value = '';
 }

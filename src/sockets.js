@@ -20,9 +20,9 @@ function websockets(sockets){
             const { room, filename } = data;
             rooms[room].image = filename;
 
-            rooms[room].users.map(id=>{
-                sockets.to(id).emit('newImage', filename );
-            })
+            setTimeout( ()=>removeImageOfTheRoom(room), 119000 );
+            
+            getMessage(room);
         })
     
         socket.on('disconnect', ()=>{
@@ -47,18 +47,19 @@ function websockets(sockets){
     
     function createRoom(userId, room){
         removeUserFromTheLastRoom(userId);
-         rooms[room] = [userId];
          rooms[room] = {
             users:[userId],
-            text:''
+            text:'',
+            image:''
          }
          usersSpot[userId] = room;
     }
     
     function getMessage(room){
+        const { text, image } = rooms[room];
        const roomData = {
-            text: rooms[room].text || "",
-            image: rooms[room].image || ""
+            text,
+            image
         }
         rooms[room].users.map(id=>{
             sockets.to(id).emit('message', roomData);
@@ -72,6 +73,12 @@ function websockets(sockets){
     
         const index = rooms[room].users.indexOf(userId);
         rooms[room].users.splice(index,1);
+    }
+
+    function removeImageOfTheRoom(room){
+        rooms[room].image ='';
+        
+        getMessage(room);
     }
 }
 
