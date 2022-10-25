@@ -64,7 +64,7 @@
             const imageInput = getElementById(document,"image");
             const user = createUser();
 
-            const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user);
+            const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user, imageDiv, text);
             const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
             const handleImageChange = (event) => {
                 if(!user.room) return imageInput.value = null;
