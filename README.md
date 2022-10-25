@@ -10,22 +10,26 @@ Mas pra que tudo isso se só quero enviar um simples texto? e se eu não quiser 
 
 Você pode utilizar o TransferData (nome de prototipo kkkk)
 
-A aplicação só possui dois campos e dois botões, tornando tudo mais simplificado.
+A aplicação só possui dois campos, tornando tudo mais simplificado.
 
 ## Passo a Passo
-
+Primeiro Passo:
 - Entre no site em ambos dispositivos
 - Preencha o primeiro campo com um nome da sua escolha (escolha um nome que não seja comum).
 - Clique no botão 'Join'.
-- Preencha o segundo campo com o texto que quer compartilhar.
-- Clique em 'Apply'.
 
-Pronto! todos conectados a sala receberão sua mensagem.
+Compartilhe textos:
+- Preencha o segundo campo com o texto que quer compartilhar.
+- Clique em 'Apply' e pronto! todos conectados a sala receberão sua mensagem.
+
+Compartilhe imagens:
+- Pressione o botão "Escolher arquivo"
+- Selecione a imagem que deseja compartilhar, e automaticamente sua imagem é compartilhada.
 
 ## Formatos suportados
 
 - Texto
-- Imagem (png/jpg)
+- Imagem
 
 Imagens são apagadas após dois minutos de seu upload.
 
