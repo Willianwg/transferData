@@ -1,6 +1,6 @@
 export default function useApi(axios){
     const api = axios.create({
-        baseURL:"http://localhost:3000"
+        baseURL:"https://transfer-wg.herokuapp.com/"
     })
 
      async function uploadImage(data, emitImage){
