@@ -52,7 +52,7 @@
             import handleApplyContent from "./scripts/handleApply.js";
             import createUser from "./scripts/createUser.js";
 
-            const api = useApi(axios);
+            let api;
             const socket = io();
 
             const text = getElementById(document,"text");
@@ -73,7 +73,7 @@
          
             createListener(joinButton,"click", handleJoin);
             createListener(applyButton,"click", handleApply);
-            createListener(imageInput ,"change", handleImageChange);
+            
 
             function setImage(filename){
                 imageDiv.innerHTML = '';
@@ -82,7 +82,7 @@
                 const image = document.createElement("img");
                 image.width = 300;
                 image.height = 300;
-                image.src = `https://transfer-wg.herokuapp.com/files/${filename}`;
+                image.src = api.baseURL+'files/'+ filename;
 
                 imageDiv.appendChild(image);
 
@@ -95,6 +95,11 @@
                 }
                 socket.emit("imageUpload", data);
             }
+
+            socket.on("setup", (baseURL)=>{
+                api = useApi(axios, baseURL);
+                createListener(imageInput ,"change", handleImageChange);
+            })
 
             socket.on('message', (roomData)=>{
                 text.innerText = roomData.text;

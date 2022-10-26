@@ -1,7 +1,5 @@
-export default function useApi(axios){
-    const api = axios.create({
-        baseURL:"https://transfer-wg.herokuapp.com/"
-    })
+export default function useApi(axios, baseURL){
+    const api = axios.create({ baseURL });
 
      async function uploadImage(data, emitImage){
         const response = await api.post("/upload", data);
@@ -11,6 +9,7 @@ export default function useApi(axios){
     }
 
     return {
+        baseURL,
         uploadImage
     }
 }

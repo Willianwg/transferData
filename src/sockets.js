@@ -4,6 +4,9 @@ function websockets(sockets){
 
     sockets.on('connection', (socket)=>{
         const userId = socket.id; 
+        const baseURL = process.env.URL || 'http://localhost:3000';
+
+        sockets.emit("setup", baseURL);
     
         socket.on('transferData', (roomData)=>{
             const { room, text } = roomData;
