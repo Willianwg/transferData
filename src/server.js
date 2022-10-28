@@ -26,8 +26,8 @@ app.post("/upload", upload.single("image"),(req,res)=>{
     try{
         const { filename } = req.file;
         deleteImage(filename);
-
         return res.json({ filename });
+        
     }catch(err){
         return res.status(400).json({ err });
     }

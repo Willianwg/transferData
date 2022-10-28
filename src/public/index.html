@@ -79,7 +79,13 @@
                 imageDiv.innerHTML = '';
                 imageInput.value = null;
                 if(!filename) return;
-                const image = document.createElement("img");
+                let image;
+                
+                if(filename.slice(filename.length-3) === 'pdf'){
+                    image = document.createElement("iframe");
+                }else{
+                    image = document.createElement("img");
+                }
                 image.width = 300;
                 image.height = 300;
                 image.src = api.baseURL+'files/'+ filename;
