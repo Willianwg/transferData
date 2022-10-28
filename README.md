@@ -30,8 +30,9 @@ Compartilhe imagens:
 
 - Texto
 - Imagem
+- Pdf
 
-Imagens são apagadas após dois minutos de seu upload.
+Imagens e Pdf's são apagados após dois minutos de seu upload.
 
 ## Resumo
 
