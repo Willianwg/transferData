@@ -31,8 +31,9 @@ Compartilhe imagens:
 - Texto
 - Imagem
 - Pdf
+- Vídeo mp4
 
-Imagens e Pdf's são apagados após dois minutos de seu upload.
+Vídeos, Imagens e Pdf's são apagados após dois minutos de seu upload.
 
 ## Resumo
 
