@@ -14,7 +14,7 @@ A aplicação só possui dois campos, tornando tudo mais simplificado.
 
 ## Passo a Passo
 Primeiro Passo:
-- Entre no site em ambos dispositivos
+- Entre no site em ambos dispositivos.
 - Preencha o primeiro campo com um nome da sua escolha (escolha um nome que não seja comum).
 - Clique no botão 'Join'.
 
@@ -23,11 +23,11 @@ Compartilhe textos:
 - Clique em 'Apply' e pronto! todos conectados a sala receberão sua mensagem.
 
 Compartilhe imagens:
-- Pressione o botão "Escolher arquivo"
+- Pressione o botão "Escolher arquivo".
 - Selecione a imagem que deseja compartilhar, e automaticamente sua imagem é compartilhada.
 
 ## Formatos suportados
-
+São aceitos uploads de no máximo 20mb.
 - Texto
 - Imagem
 - Pdf
