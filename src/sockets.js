@@ -4,7 +4,7 @@ function websockets(sockets){
 
     sockets.on('connection', (socket)=>{
         const userId = socket.id; 
-        const baseURL = process.env.URL || 'http://localhost:3000';
+        const baseURL = process.env.URL || 'http://localhost:3000/';
 
         sockets.emit("setup", baseURL);
     

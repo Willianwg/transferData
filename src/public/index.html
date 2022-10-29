@@ -76,12 +76,15 @@
             
 
             function setImage(filename){
+                console.log(filename)
                 imageDiv.innerHTML = '';
                 imageInput.value = null;
                 if(!filename) return;
+
                 let image;
+                const extension = filename.slice(filename.length-3);
                 
-                if(filename.slice(filename.length-3) === 'pdf'){
+                if(extension === 'pdf' || extension === "mp4" ){
                     image = document.createElement("iframe");
                 }else{
                     image = document.createElement("img");

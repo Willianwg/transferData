@@ -1,5 +1,9 @@
 export default function useApi(axios, baseURL){
-    const api = axios.create({ baseURL });
+    let URL = baseURL;
+    if(URL[URL.length - 1] !== "/"){
+        URL+="/";
+    }
+    const api = axios.create({ baseURL:URL });
 
      async function uploadImage(data, emitImage){
         const response = await api.post("/upload", data);
@@ -9,7 +13,7 @@ export default function useApi(axios, baseURL){
     }
 
     return {
-        baseURL,
+        baseURL:URL,
         uploadImage
     }
 }
