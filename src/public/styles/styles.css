@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap');
 
 :root  {
     --primary-color: #00AAFF;
@@ -45,4 +45,40 @@ a {
 ::-webkit-scrollbar-thumb { 
     background: var(--gray-200);
     border-radius: 50rem;
+}
+
+header {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    width: 100%;
+    background: var(--white);
+    border-bottom: .125rem solid var(--gray-100);
+    padding: .875rem 1.75rem;
+    user-select: none;
+}
+
+.header__brand {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: .5rem;
+    width: 100%;
+}
+
+.header__brand i {
+    color: var(--primary-color);
+    font-size: 1.625rem;
+}
+
+.header__brand a {
+    color: var(--black);
+    font-size: 1.25rem;
+    font-weight: 500;
+    cursor: default;
+}
+
+.header__brand span {
+    font-weight: 700;
 }
