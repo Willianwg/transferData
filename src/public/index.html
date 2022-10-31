@@ -7,27 +7,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#FAFAFA">
         <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <style>
-            
-            #room {
-                margin-bottom: 10px;
-            }
-
-            body {
-                display: flex;
-            }
-
-            #form {
-                margin:auto;
-            }
-
-            #text {
-                margin-top: 20px;
-            }
-
-        </style>
-       <script src="/socket.io/socket.io.js"></script>
-       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <link rel="stylesheet" href="styles/styles.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
         <div id="form">
@@ -46,7 +28,7 @@
             <div id="imageDiv"></div>
             <div id="text"></div>
         </div>
-
+        
         <script type="module">
             import useApi from "./scripts/api.js";
             import createListener from "./scripts/createEventListener.js"
