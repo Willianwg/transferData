@@ -181,7 +181,7 @@ main {
     justify-content: center;
     align-items: center;
     max-width: 28rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     
     font-size: 1.15rem;
     font-weight: 600;
@@ -207,6 +207,7 @@ main {
 }
 
 .form__files-dragdrop input {
+    font-size: .9rem;
     background: transparent;
     border: 0.125rem dashed rgba(0, 170, 255, .5);
     width: 100%;
@@ -215,8 +216,10 @@ main {
     z-index: 1;
 }
 
-.form__files-dragdrop input:hover {
-    box-shadow: inset 0.02rem 0.1rem 0.2rem 0.02rem var(--gray-400);
+.input-file::-webkit-file-upload-button {
+    margin-left: .5rem;
+    border: none;
+    border-radius: .35rem;
 }
 
 .form__files-dragdrop .content {
@@ -239,6 +242,11 @@ main {
 
 .form__files button {
     align-self: end;
+}
+
+.form__files button > i {
+    font-size: 1.25rem;
+    line-height: 2.15rem;
 }
 
 .content2 {
