@@ -6,7 +6,7 @@
     --black: #00111A;
     --white: #FEFEFE;
     --light: #FAFAFA;
-    --gray-100: #F2F4F5;
+    --gray-100: #EDF0F2;
     --gray-200: #CCCDD3;
     --gray-300: #A9ABB2;
     --gray-400: #4D525B;
@@ -47,6 +47,16 @@ a {
     border-radius: 50rem;
 }
 
+input:-webkit-autofill {
+  transition: background-color 5000s;
+}
+
+textarea:focus, input:focus, select:focus, .form-control:focus {
+    outline: 0;
+    border-color: var(--gray-200);
+    box-shadow: inset 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-200);
+}
+
 button {
     border: 0.125rem solid var(--gray-100);
     border-radius: 50rem;
@@ -56,7 +66,7 @@ button {
     flex-direction: row;
     align-items: center;
     gap: .5rem;
-    padding: .3rem 1.25rem;
+    padding: .1rem 1.25rem;
     cursor: pointer;
 }
 
@@ -65,7 +75,7 @@ button:hover {
 }
 
 button span {
-    font-size: 0.95rem;
+    font-size: .965rem;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -118,4 +128,23 @@ header {
 
 .header__brand span {
     font-weight: 700;
+}
+
+main, section, footer {
+    padding: 2rem 4.5rem;
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(2,50%);
+    justify-content: space-between;
+    align-items: center;
+    gap: 4.5rem;
+}
+
+.content1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
