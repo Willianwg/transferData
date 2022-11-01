@@ -7,9 +7,10 @@
     --white: #FEFEFE;
     --light: #FAFAFA;
     --gray-100: #EDF0F2;
-    --gray-200: #CCCDD3;
-    --gray-300: #A9ABB2;
-    --gray-400: #4D525B;
+    --gray-200: #E1E5E7;
+    --gray-300: #CED4DA;
+    --gray-400: #A9ABB2;
+    --gray-500: #4D525B;
 }
 
 html {
@@ -48,6 +49,7 @@ a {
 }
 
 input:-webkit-autofill {
+    background-color: transparent;
   transition: background-color 5000s;
 }
 
@@ -55,6 +57,7 @@ textarea:focus, input:focus, select:focus, .form-control:focus {
     outline: 0;
     border-color: var(--gray-200);
     box-shadow: inset 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-200);
+    background: transparent;
 }
 
 button {
@@ -100,8 +103,8 @@ header {
     align-items: center;
     width: 100%;
     background: var(--white);
-    border-bottom: .125rem solid var(--gray-100);
-    padding: .875rem 1.75rem;
+    box-shadow: 0.01rem 0.08rem 0.15rem 0.01rem var(--gray-300);
+    padding: .4rem 1.75rem;
     user-select: none;
 }
 
@@ -136,15 +139,146 @@ main, section, footer {
 
 main {
     display: grid;
-    grid-template-columns: repeat(2,50%);
+    grid-template-columns: repeat(2,47%);
     justify-content: space-between;
     align-items: center;
-    gap: 4.5rem;
+    gap: 2.5rem;
 }
 
-.content1 {
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.form__room {
+    width: 75%;
+}
+
+.form__files {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.form__files-dragdrop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+}
+
+.form__files-dragdrop label {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 28rem;
+    margin-bottom: 2rem;
+    
+    font-size: 1.15rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5rem;
+    word-break: break-word;
+    color: var(--black);
+    user-select: none;
+}
+
+.form__files-dragdrop .label-text-xl {
+    display: none;
+}
+
+.form__files-dragdrop label i {
+    font-size: 5rem;
+    line-height: 5rem;
+    color: var(--gray-300);
+}
+
+.form__files-dragdrop label b {
+    color: var(--primary-color);
+}
+
+.form__files-dragdrop input {
+    background: transparent;
+    border: 0.125rem dashed rgba(0, 170, 255, .5);
+    width: 100%;
+    height: 100%;
+    padding: 10rem 2rem 1.5rem 7rem;
+    z-index: 1;
+}
+
+.form__files-dragdrop input:hover {
+    box-shadow: inset 0.02rem 0.1rem 0.2rem 0.02rem var(--gray-400);
+}
+
+.form__files-dragdrop .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    max-width: 100%;
+    padding: 1.25rem 2rem;
+    background: var(--gray-100);
+    width: 100%;
+}
+
+.form__files-notes {
+    font-size: .85rem;
+    color: var(--gray-500);
+    margin-bottom: .55rem;
+}
+
+.form__files button {
+    align-self: end;
+}
+
+.content2 {
+    background-color: var(--white);
+    border-radius: 0.35rem;
+    box-shadow: 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-300);
+    height: 100%;
+    padding: 2rem;
+}
+
+
+@media screen and (max-width: 1100px) {
+    .form__room {
+        width: 100%;
+    }
+
+    .form__files-dragdrop label {
+        display: none;
+    }
+
+    .form__files-dragdrop .label-text-xl {
+        display: flex;
+    }
+
+    .form__files-dragdrop .label-text {
+        display: none;
+    }
+
+    .form__files-dragdrop input {
+        background: transparent;
+        border: 0.1rem solid var(--gray-200);
+        padding: .2rem .8rem;
+    }
+    
+
+    main, section, footer {
+        padding: 1.5rem 2.5rem;
+    }
+    
+    main {
+        grid-template-columns: repeat(1,100%);
+    }
 }
