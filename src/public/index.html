@@ -21,12 +21,21 @@
                 <a href="#">Transfer<span>Data</span></a>
             </div>
         </header>
-        <div id="form">
-            <div>
-                <p>Transfer</p>
-                <input id="room"/>
-                <button id="join-btn">Join</button>
+        <main>
+            <div class="content1">
+                <div class="content1__form">
+                    <form method="post">
+                        <input type="text" id="room" placeholder="Crie ou insira o nome de uma sala..."/>
+                        <button id="join-btn" class="button-primary">
+                            <span>Entrar</span>
+                            <i class="bi bi-box-arrow-in-right"></i>
+                        </button>
+                    </form>
+                </div>
             </div>
+        </main>
+
+        <div id="form">
             <div style="display: flex; margin-bottom: 20px;">
                 <div>
                     <textarea id='contentInput'></textarea>

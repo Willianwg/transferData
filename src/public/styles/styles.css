@@ -47,6 +47,43 @@ a {
     border-radius: 50rem;
 }
 
+button {
+    border: 0.125rem solid var(--gray-100);
+    border-radius: 50rem;
+    box-shadow: 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-300);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5rem;
+    padding: .3rem 1.25rem;
+    cursor: pointer;
+}
+
+button:hover {
+    box-shadow: inset 0.01rem 0.08rem 0.2rem 0.01rem var(--gray-300);
+}
+
+button span {
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+button i {
+    font-size: 1.5rem;
+}
+
+.button-primary {
+    background-color: var(--primary-color);
+    border: 0.125rem solid var(--primary-color);
+    color: var(--white);
+}
+
+.button-primary:hover {
+    box-shadow: inset 0.01rem 0.08rem 0.2rem 0.01rem var(--secondary-color);
+}
+
 header {
     display: flex;
     flex-flow: row wrap;
