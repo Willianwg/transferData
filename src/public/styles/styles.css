@@ -50,7 +50,7 @@ a {
 
 input:-webkit-autofill {
     background-color: transparent;
-  transition: background-color 5000s;
+    transition: background-color 5000s;
 }
 
 textarea:focus, input:focus, select:focus, .form-control:focus {
@@ -222,6 +222,10 @@ main {
     border-radius: .35rem;
 }
 
+.input-file input:focus, .input-file select:focus {
+    box-shadow: inset 0.01rem 0.07rem 0.2rem 0.001rem transparent;
+}
+
 .form__files-dragdrop .content {
     display: flex;
     flex-direction: column;
@@ -277,11 +281,14 @@ main {
 
     .form__files-dragdrop input {
         background: transparent;
-        border: 0.1rem solid var(--gray-200);
-        padding: .2rem .8rem;
+        border: 0.1rem solid transparent;
+        padding: 0;
+    }
+
+    .input-file::-webkit-file-upload-button {
+        margin: auto .5rem auto auto;
     }
     
-
     main, section, footer {
         padding: 1.5rem 2.5rem;
     }
