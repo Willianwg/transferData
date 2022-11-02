@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;500;600;700&display=swap');
 
 :root  {
-    --primary-color: #00AAFF;
-    --secondary-color: #0089CE;
+    --primary-color: #076bf5;
+    --secondary-color: #0460e0;
     --black: #00111A;
     --white: #FEFEFE;
     --light: #FAFAFA;
@@ -11,6 +11,7 @@
     --gray-300: #CED4DA;
     --gray-400: #A9ABB2;
     --gray-500: #4D525B;
+    --gray-600: #2e3035;
 }
 
 html {
@@ -33,6 +34,10 @@ body {
 a {
     color: var(--primary-color);
     text-decoration: none;
+}
+
+a:hover {
+    color: var(--secondary-color);
 }
 
 ::-webkit-scrollbar {
@@ -103,7 +108,7 @@ header {
     align-items: center;
     width: 100%;
     background: var(--white);
-    box-shadow: 0.01rem 0.08rem 0.15rem 0.01rem var(--gray-300);
+    box-shadow: 0.01rem 0.08rem 0.12rem 0.01rem var(--gray-300);
     padding: .4rem 1.75rem;
     user-select: none;
 }
@@ -210,7 +215,7 @@ main {
 .form__files-dragdrop input {
     font-size: .9rem;
     background: transparent;
-    border: 0.125rem dashed rgba(0, 170, 255, .5);
+    border: 0.125rem dashed rgba(7, 107, 245, 0.502);
     width: 100%;
     height: 100%;
     padding: 10rem 2rem 1.5rem 7rem;
@@ -257,7 +262,7 @@ main {
 .content2 {
     height: 100%;
     border-radius: .35rem;
-    box-shadow: 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-300);
+    border: .1rem solid var(--gray-300);
 }
 
 .room {
@@ -274,7 +279,7 @@ main {
     font-weight: 600;
     padding: 1rem;
     background: var(--white);
-    border-bottom: 0.1rem solid var(--gray-200);
+    border-bottom: 0.1rem solid var(--gray-300);
     border-radius: .35rem .35rem 0 0;
     margin: 0;
 }
@@ -310,6 +315,44 @@ main {
 
 .room .sent-files__text > textarea {
     display: none;
+}
+
+.faq h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+.accordion-button {
+    font-weight: 600;
+    color: var(--gray-600);
+    background: var(--white);
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--secondary-color);
+    background: var(--gray-100);
+}
+
+.accordion-button:focus {
+    border-color: transparent;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+
+
+footer {
+    background: var(--white);
+    padding: 1rem;
+    text-align: center;
+    border-top: 0.1rem solid var(--gray-200);
+}
+
+footer span {
+    font-size: .9rem;
+    color: var(--gray-600);
 }
 
 
