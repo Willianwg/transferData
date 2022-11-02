@@ -2,7 +2,7 @@
 
 :root  {
     --primary-color: #076bf5;
-    --secondary-color: rgb(0, 57, 138);
+    --secondary-color: #00398a;
     --black: #00111A;
     --white: #FEFEFE;
     --light: #FAFAFA;
@@ -83,7 +83,7 @@ button:hover {
 }
 
 button span {
-    font-size: .965rem;
+    font-size: .9rem;
     font-weight: 600;
     text-transform: uppercase;
 }
@@ -202,27 +202,19 @@ main {
 }
 
 .form__files-dragdrop label i {
-    font-size: 5rem;
-    line-height: 5.25rem;
+    font-size: 4.75rem;
+    line-height: 6rem;
     color: var(--gray-300);
     opacity: 50%;
-    transition: .4s;
+    transition: .2s;
 }
 
-.bi-folder-plus {
-    display: none;
-}
-
-.form__files-dragdrop:hover .bi-folder-plus,
-.form__files-dragdrop:active .bi-folder-plus{
+.form__files-dragdrop:hover label i,
+.form__files-dragdrop:active label i{
     display: block;
     color: var(--primary-color);
     opacity: 30%;
     transition: .4s;
-}
-
-.form__files-dragdrop:hover .bi-folder{
-    display: none;
 }
 
 .form__files-dragdrop label b {
@@ -235,7 +227,7 @@ main {
     border: 0.125rem dashed rgba(7, 107, 245, 0.55);
     width: 100%;
     height: 100%;
-    padding: 10rem 2rem 1.5rem 7rem;
+    padding: 12rem 2rem 1.5rem 7rem;
     z-index: 1;
 }
 
