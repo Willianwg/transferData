@@ -1,120 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
     <head>
         <meta charset="utf-8">
-        <title>Transfer</title>
-        <style>
-            
-            #room {
-                margin-bottom: 10px;
-            }
-
-            body {
-                display: flex;
-            }
-
-            #form {
-                margin:auto;
-            }
-
-            #text {
-                margin-top: 20px;
-            }
-
-        </style>
-       <script src="/socket.io/socket.io.js"></script>
-       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <title>TransferData | Compartilhe Arquivos entre Dispositivos</title>
+        <meta name="description" content="Compartilhe arquivos entre dispositivos de maneira fácil e rápida com o TransferData.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#FAFAFA">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles/styles.css">
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </head>
     <body>
-        <div id="form">
-            <div>
-                <p>Transfer</p>
-                <input id="room"/>
-                <button id="join-btn">Join</button>
+        <header>
+            <div class="header__brand">
+                <i class="bi bi-file-earmark-arrow-up"></i>
+                <a href="#">Transfer<span>Data</span></a>
             </div>
-            <div style="display: flex; margin-bottom: 20px;">
-                <div>
-                    <textarea id='contentInput'></textarea>
-                    <button id="apply-btn">Apply</button>
-                    <input type="file" name="image" id="image"/>
+        </header>
+        <main>
+            <div class="content1 form">
+                <div class="form__room">
+                    <div class="input-group">
+                        <input id="room" class="form-control" type="text" 
+                               placeholder="Crie ou insira o nome de uma sala..." 
+                               aria-label="Crie ou insira o nome de uma sala..." 
+                               aria-describedby="join-btn"
+                        >
+                        <button id="join-btn" class="button-primary" type="button">
+                            <span>Entrar</span>
+                            <i class="bi bi-box-arrow-in-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form__files">
+                    <div class="form__files-dragdrop form-group files">
+                        <label for="image">
+                            <span class="label-text-xl">Importe seu arquivo</span>
+                            <i class="label-text bi bi-folder2-open"></i>
+                            <span class="label-text">Arraste e importe uma <b>Imagem</b>, <b>PDF</b> ou <b>Vídeo*</b>,</span>
+                            <span class="label-text">ou escolha um no seu dispositivo.</span>
+                        </label>
+                        <input id="image" class="form-control input-file" type="file" name="image"> 
+                    </div>
+                    <span class="form__files-notes">Formatos suportados: png, jpg, pdf, mp4.</span>
+                    <div class="input-group">
+                        <textarea id='contentInput' class="form-control" rows="3"></textarea>
+                    </div>
+                    <button id="apply-btn" class="button-primary">
+                        <span>Enviar</span>
+                        <i class="bi bi-send"></i>
+                    </button>
                 </div>
             </div>
-            <div id="imageDiv"></div>
-            <div id="text"></div>
-        </div>
-
-        <script type="module">
-            import useApi from "./scripts/api.js";
-            import createListener from "./scripts/createEventListener.js"
-            import getElementById from "./scripts/getElement.js";
-            import handleJoinRoom from "./scripts/handleJoin.js";
-            import handleChange from "./scripts/handleChange.js";
-            import handleApplyContent from "./scripts/handleApply.js";
-            import createUser from "./scripts/createUser.js";
-
-            let api;
-            const socket = io();
-
-            const text = getElementById(document,"text");
-            const imageDiv = getElementById(document,"imageDiv");
-            const roomInput = getElementById(document,"room");
-            const contentInput = getElementById(document,"contentInput");
-            const joinButton = getElementById(document,"join-btn");
-            const applyButton = getElementById(document,"apply-btn");
-            const imageInput = getElementById(document,"image");
-            const user = createUser();
-
-            const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user, imageDiv, text);
-            const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
-            const handleImageChange = (event) => {
-                if(!user.room) return imageInput.value = null;
-                handleChange(event, api.uploadImage, emitImage);
-            }
-         
-            createListener(joinButton,"click", handleJoin);
-            createListener(applyButton,"click", handleApply);
-            
-
-            function setImage(filename){
-                console.log(filename)
-                imageDiv.innerHTML = '';
-                imageInput.value = null;
-                if(!filename) return;
-
-                let image;
-                const extension = filename.slice(filename.length-3);
-                
-                if(extension === 'pdf' || extension === "mp4" ){
-                    image = document.createElement("iframe");
-                }else{
-                    image = document.createElement("img");
-                }
-                image.width = 300;
-                image.height = 300;
-                image.src = api.baseURL+'files/'+ filename;
-
-                imageDiv.appendChild(image);
-
-            }
-
-            function emitImage(filename){
-                const data = {
-                    room:user.room,
-                    filename
-                }
-                socket.emit("imageUpload", data);
-            }
-
-            socket.on("setup", (baseURL)=>{
-                api = useApi(axios, baseURL);
-                createListener(imageInput ,"change", handleImageChange);
-            })
-
-            socket.on('message', (roomData)=>{
-                text.innerText = roomData.text;
-                setImage(roomData.image);
-            })
-
-        </script>
+            <div class="content2 display">
+                <h2> Sala:
+                    <span id="roomName">Entre ou Crie uma Sala para Importar...</span>
+                </h2>
+                <div class="sent-files">
+                    <div id="imageDiv"></div>
+                    <div id="text"></div>
+                </div>
+            </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script type="module" src="scripts/main.js"></script>
     </body>
 </html>
