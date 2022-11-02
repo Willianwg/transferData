@@ -143,7 +143,7 @@ main, section, footer {
     padding: 1.25rem 4.5rem 2.5rem;
 }
 
-main, section {
+main {
     display: grid;
     grid-template-columns: repeat(2,47%);
     justify-content: space-between;
@@ -230,7 +230,6 @@ main, section {
     width: 100%;
     height: 100%;
     padding: 12rem 2rem 1.5rem 7rem;
-    z-index: 1;
 }
 
 .input-file::-webkit-file-upload-button {
@@ -293,7 +292,6 @@ main, section {
     border-bottom: 0.1rem solid var(--gray-300);
     border-radius: .35rem .35rem 0 0;
     margin: 0;
-    z-index: 2;
 }
 
 .room h2 span {
@@ -329,6 +327,15 @@ main, section {
     display: none;
 }
 
+section {
+    display: grid;
+    grid-template-columns: 60% 34%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5rem;
+    padding-top: 2.5rem;
+}
+
 .faq .accordion-button {
     font-size: 1.05rem;
     font-weight: 700;
@@ -358,14 +365,15 @@ main, section {
 .faq .faq__illustration {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     height: 100%;
 }
 
 .faq .faq__illustration img {
     width: 28rem;
-    max-width: 100%;;
+    max-width: 100%;
+    max-height: 100%;
     padding: 1rem 2rem;
     filter: contrast(1.15);
     pointer-events: none;
@@ -373,10 +381,11 @@ main, section {
 }
 
 footer {
-    background: var(--white);
-    padding: 1rem;
     text-align: center;
-    border-top: 0.1rem solid var(--gray-200);
+    background: var(--white);
+    border-top: 12rem solid var(--gray-200);
+    margin-top: -11rem;
+    padding: 1rem;
 }
 
 footer span {
@@ -422,6 +431,10 @@ footer span {
     }
     
     main, section {
-        grid-template-columns: repeat(1,100%);
+        grid-template-columns: 1fr;
+    }
+
+    .faq .faq__illustration img {
+        display: none;
     }
 }
