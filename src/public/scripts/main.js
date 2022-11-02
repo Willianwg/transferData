@@ -12,13 +12,14 @@ const socket = io();
 const text = getElementById(document,"text");
 const imageDiv = getElementById(document,"imageDiv");
 const roomInput = getElementById(document,"room");
+const roomName = getElementById(document,"roomName");
 const contentInput = getElementById(document,"contentInput");
 const joinButton = getElementById(document,"join-btn");
 const applyButton = getElementById(document,"apply-btn");
 const imageInput = getElementById(document,"image");
 const user = createUser();
 
-const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user, imageDiv, text);
+const handleJoin = (event) => handleJoinRoom(event, socket, roomInput, user, imageDiv, text, roomName);
 const handleApply = (event) => handleApplyContent(event, socket, contentInput, user);
 const handleImageChange = (event) => {
     if(!user.room) return imageInput.value = null;
