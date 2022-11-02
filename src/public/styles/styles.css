@@ -200,6 +200,7 @@ main {
     font-size: 5rem;
     line-height: 5.25rem;
     color: var(--gray-300);
+    opacity: 50%;
 }
 
 .form__files-dragdrop label b {
@@ -254,22 +255,45 @@ main {
 }
 
 .content2 {
-    background-color: var(--white);
-    border-radius: 0.35rem;
-    box-shadow: 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-300);
     height: 100%;
-    padding: 2rem;
+    border-radius: .35rem;
+    box-shadow: 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-300);
 }
 
-.content2 h2 {
+.room {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    border-radius: .35rem;
+    height: 100%;
+}
+
+.room h2 {
     font-size: 1.2rem;
     color: var(--black);
     font-weight: 600;
-    padding: .5rem 0 0;
+    padding: 1rem;
+    background: var(--white);
+    border-bottom: 0.1rem solid var(--gray-200);
+    border-radius: .35rem .35rem 0 0;
+    margin: 0;
 }
 
-.content2 h2 span {
+.room h2 span {
     color: var(--primary-color);
+    font-weight: 500;
+}
+
+.room .sent-files {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem;
+}
+
+.room .sent-files div {
+    z-index: 2;
 }
 
 
