@@ -76,6 +76,7 @@ button {
     gap: .5rem;
     padding: .1rem 1.25rem;
     cursor: pointer;
+    user-select: none;
 }
 
 button:hover {
@@ -139,15 +140,16 @@ header {
 }
 
 main, section, footer {
-    padding: 2.5rem 4.5rem;
+    padding: 1.25rem 4.5rem 2.5rem;
 }
 
-main {
+main, section {
     display: grid;
     grid-template-columns: repeat(2,47%);
     justify-content: space-between;
     align-items: center;
     gap: 2.5rem;
+    padding-top: 2.5rem;
 }
 
 .form {
@@ -353,6 +355,22 @@ main {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
+.faq .faq__illustration {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+}
+
+.faq .faq__illustration img {
+    width: 28rem;
+    max-width: 100%;;
+    padding: 1rem 2rem;
+    filter: contrast(1.15);
+    pointer-events: none;
+    user-select: none;
+}
 
 footer {
     background: var(--white);
@@ -403,7 +421,7 @@ footer span {
         padding: 1.5rem 2.5rem;
     }
     
-    main {
+    main, section {
         grid-template-columns: repeat(1,100%);
     }
 }
