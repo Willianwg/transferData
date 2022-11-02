@@ -25,8 +25,8 @@
                 <div class="form__room">
                     <div class="input-group">
                         <input id="room" class="form-control" type="text" 
-                               placeholder="Crie ou insira o nome de uma sala..." 
-                               aria-label="Crie ou insira o nome de uma sala..." 
+                               placeholder="Digite o nome de uma sala..." 
+                               aria-label="Digite o nome de uma sala..." 
                                aria-describedby="join-btn"
                         >
                         <button id="join-btn" class="button-primary" type="button">
@@ -39,7 +39,7 @@
                     <div class="form__files-dragdrop form-group files">
                         <label for="image">
                             <span class="label-text-xl">Importe seu arquivo</span>
-                            <i class="label-text bi bi-folder2-open"></i>
+                            <i class="label-text bi bi-cloud-upload"></i>
                             <span class="label-text">Arraste e importe uma <b>Imagem</b>, <b>PDF</b> ou <b>Vídeo*</b>,</span>
                             <span class="label-text">ou escolha um no seu dispositivo.</span>
                         </label>
@@ -47,7 +47,10 @@
                     </div>
                     <span class="form__files-notes">Formatos suportados: png, jpg, pdf, mp4.</span>
                     <div class="input-group">
-                        <textarea id='contentInput' class="form-control" rows="3"></textarea>
+                        <textarea id='contentInput' class="form-control" rows="3"
+                                  placeholder="Digite o texto que deseja enviar..."
+                                  maxlength="3000"
+                        ></textarea>
                     </div>
                     <button id="apply-btn" class="button-primary">
                         <span>Enviar</span>
@@ -55,16 +58,82 @@
                     </button>
                 </div>
             </div>
-            <div class="content2 display">
-                <h2> Sala:
-                    <span id="roomName">Entre ou Crie uma Sala para Importar...</span>
-                </h2>
-                <div class="sent-files">
-                    <div id="imageDiv"></div>
-                    <div id="text"></div>
+            <div class="content2">
+                <div class="room">
+                    <h2> Sala:
+                        <span id="roomName">Entre ou Crie uma Sala para Importar...</span>
+                    </h2>
+                    <div class="sent-files">
+                        <div id="imageDiv" class="sent-files__files"></div>
+                        <div class="sent-files__text">
+                            <textarea id="text" class="form-control" rows="3" disabled="on" readonly></textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
+        <section class="faq">
+            <div class="accordion" id="accordionFaq">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        O que é o TransferData?
+                    </button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFaq">
+                    <div class="accordion-body">
+                        <strong>TransferData é uma Aplicação Web para Transferência de Arquivos entre Dispositivos.</strong> 
+                                Compartilhe de forma gratuita e rápida sem precisar instalar ou criar uma conta!
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Como utilizar o TransferData?
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFaq">
+                    <div class="accordion-body">
+                        <h3>1) Entre ou Crie uma Sala:</h3> 
+                        <ol type="I">
+                          <li>Entre no site em ambos dispositivos.</li>
+                          <li>Preencha o primeiro campo com um nome da sua escolha (escolha um nome que não seja comum).</li>
+                          <li>Clique no botão 'Entrar'.</li>
+                        </ol>
+                        <h3>2) Compartilhe seu texto ou arquivo!</h3> 
+                        <ol type="I">
+                          <li>Faça o upload do seu arquivo ou preencha o campo com o texto que quer compartilhar.</li>
+                          <li>Clique em 'Enviar' e pronto! Todos conectados a sala receberão sua mensagem.</li>
+                        </ol>
+                      </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Qual tamanho máximo e formatos são aceitos?
+                    </button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFaq">
+                    <div class="accordion-body">
+                        <strong>São aceitos uploads de no máximo 20mb.</strong> 
+                              Você pode compartilhar Imagens nos formatos <b>png e jpg</b>; Textos em arquivos <b>pdf</b>
+                              ou colando no campo de texto até no máximo <b>3.000 caracteres</b>; e Vídeos em <b>mp4</b>.
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </section>
+        <footer>
+            <span>2022. TranferData. Desenvolvido por 
+                <a href="https://github.com/Willianwg" target="_blank">Willian Guedes</a>. 
+                Contribuição 
+                <a href="https://elidianaandrade.github.io/" target="_blank">Elidiana Andrade</a>. 
+                Confira o repositório no
+                <a href="https://github.com/Willianwg/transferData" target="_blank">GitHub</a>.
+            </span>
+        </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script type="module" src="scripts/main.js"></script>
     </body>
