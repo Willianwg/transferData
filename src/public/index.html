@@ -25,8 +25,8 @@
                 <div class="form__room">
                     <div class="input-group">
                         <input id="room" class="form-control" type="text" 
-                               placeholder="Crie ou insira o nome de uma sala..." 
-                               aria-label="Crie ou insira o nome de uma sala..." 
+                               placeholder="Digite o nome de uma sala..." 
+                               aria-label="Digite o nome de uma sala..." 
                                aria-describedby="join-btn"
                         >
                         <button id="join-btn" class="button-primary" type="button">
@@ -47,7 +47,9 @@
                     </div>
                     <span class="form__files-notes">Formatos suportados: png, jpg, pdf, mp4.</span>
                     <div class="input-group">
-                        <textarea id='contentInput' class="form-control" rows="3"></textarea>
+                        <textarea id='contentInput' class="form-control" rows="3"
+                                  placeholder="Digite o texto que deseja enviar..."
+                        ></textarea>
                     </div>
                     <button id="apply-btn" class="button-primary">
                         <span>Enviar</span>
@@ -61,8 +63,10 @@
                         <span id="roomName">Entre ou Crie uma Sala para Importar...</span>
                     </h2>
                     <div class="sent-files">
-                        <div id="imageDiv"></div>
-                        <div id="text"></div>
+                        <div id="imageDiv" class="sent-files__files"></div>
+                        <div class="sent-files__text">
+                            <textarea id="text" class="form-control" rows="3" disabled="on" readonly></textarea>
+                        </div>
                     </div>
                 </div>
             </div>
