@@ -183,7 +183,7 @@ main {
     max-width: 28rem;
     margin-bottom: 3rem;
     
-    font-size: 1.15rem;
+    font-size: 1.125rem;
     font-weight: 600;
     text-align: center;
     line-height: 1.5rem;
@@ -198,7 +198,7 @@ main {
 
 .form__files-dragdrop label i {
     font-size: 5rem;
-    line-height: 5rem;
+    line-height: 5.25rem;
     color: var(--gray-300);
 }
 
@@ -259,6 +259,17 @@ main {
     box-shadow: 0.01rem 0.07rem 0.2rem 0.001rem var(--gray-300);
     height: 100%;
     padding: 2rem;
+}
+
+.content2 h2 {
+    font-size: 1.2rem;
+    color: var(--black);
+    font-weight: 600;
+    padding: .5rem 0 0;
+}
+
+.content2 h2 span {
+    color: var(--primary-color);
 }
 
 
