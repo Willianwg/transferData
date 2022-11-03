@@ -197,6 +197,7 @@ main {
     word-break: break-word;
     color: var(--black);
     user-select: none;
+    cursor: pointer;
 }
 
 .form__files-dragdrop .label-text-xl {
