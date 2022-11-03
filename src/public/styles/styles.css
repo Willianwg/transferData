@@ -181,6 +181,26 @@ main {
     width: 100%;
 }
 
+.form__files-dragdrop input {
+    font-size: .9rem;
+    background: transparent;
+    border: 0.125rem dashed rgba(7, 107, 245, 0.55);
+    width: 100%;
+    height: 100%;
+    padding: 12rem 2rem 1.5rem 7rem;
+    z-index: 2;
+}
+
+.input-file::-webkit-file-upload-button {
+    margin-left: .5rem;
+    border: none;
+    border-radius: .35rem;
+}
+
+.input-file input:focus, .input-file select:focus {
+    box-shadow: inset 0.01rem 0.07rem 0.2rem 0.001rem transparent;
+}
+
 .form__files-dragdrop label {
     position: absolute;
     display: flex;
@@ -198,6 +218,7 @@ main {
     color: var(--black);
     user-select: none;
     cursor: pointer;
+    z-index: 1;
 }
 
 .form__files-dragdrop .label-text-xl {
@@ -222,25 +243,6 @@ main {
 
 .form__files-dragdrop label b {
     color: var(--primary-color);
-}
-
-.form__files-dragdrop input {
-    font-size: .9rem;
-    background: transparent;
-    border: 0.125rem dashed rgba(7, 107, 245, 0.55);
-    width: 100%;
-    height: 100%;
-    padding: 12rem 2rem 1.5rem 7rem;
-}
-
-.input-file::-webkit-file-upload-button {
-    margin-left: .5rem;
-    border: none;
-    border-radius: .35rem;
-}
-
-.input-file input:focus, .input-file select:focus {
-    box-shadow: inset 0.01rem 0.07rem 0.2rem 0.001rem transparent;
 }
 
 .form__files-dragdrop .content {
