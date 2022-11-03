@@ -312,16 +312,20 @@ main {
 .room .sent-files__files {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
 }
 
-.sent-files__files > img,
-.sent-files__files > iframe {
+.sent-files__files > img {
     object-fit: contain;
     object-position: center top;
     max-height: 14rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.sent-files__files > iframe {
     margin-bottom: 1.25rem;
     width: 100%;
 }
