@@ -147,7 +147,7 @@ main {
     display: grid;
     grid-template-columns: repeat(2,47%);
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     gap: 2.5rem;
     padding-top: 2.5rem;
 }
