@@ -1,7 +1,7 @@
 const path = require('path');
 
 function isSupported(mimetype){
-    const supportedMimetype = ['image/png', 'image/jpg', 'video/mp4', "application/pdf"];
+    const supportedMimetype = ['image/png', 'image/jpeg', 'video/mp4', "application/pdf", 'application/msword', 'application/vnd.ms-powerpoint', 'application/vnd.ms-excel'];
     const supportedExtensions = [".document", ".presentation", '.sheet'];
     
     if(supportedMimetype.find(type => type === mimetype)) return true;

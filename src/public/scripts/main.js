@@ -40,7 +40,7 @@ function setImage(filename){
     let re = /(?:\.([^.]+))?$/;
     const extension = re.exec(filename)[1];
 
-    if(extension === 'jpg' || extension === "png"){
+    if(extension === 'jpg' || extension === "jpeg" || extension === "png"){
         image = document.createElement("img");
         image.src = api.baseURL+'files/'+ filename;
     }
