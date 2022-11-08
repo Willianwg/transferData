@@ -23,7 +23,7 @@ function websockets(sockets){
             const { room, filename } = data;
             rooms[room].image = filename;
 
-            setTimeout( ()=>removeImageOfTheRoom(room), 119000 );
+            setTimeout( ()=>removeImageOfTheRoom(room, filename), 119000 );
             
             getMessage(room);
         })
@@ -78,10 +78,11 @@ function websockets(sockets){
         rooms[room].users.splice(index,1);
     }
 
-    function removeImageOfTheRoom(room){
-        rooms[room].image ='';
-        
-        getMessage(room);
+    function removeImageOfTheRoom(room, filename){
+        if(rooms[room].image == filename){
+            rooms[room].image ='';
+            getMessage(room);
+        } 
     }
 }
 

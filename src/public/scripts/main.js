@@ -37,16 +37,23 @@ function setImage(filename){
     if(!filename) return;
 
     let image;
-    const extension = filename.slice(filename.length-3);
-    
-    if(extension === 'pdf' || extension === "mp4" ){
-        image = document.createElement("iframe");
-    }else{
+    let re = /(?:\.([^.]+))?$/;
+    const extension = re.exec(filename)[1];
+
+    if(extension === 'jpg' || extension === "png"){
         image = document.createElement("img");
+        image.src = api.baseURL+'files/'+ filename;
+    }
+    else if(extension === 'pdf' || extension === "mp4"){
+        image = document.createElement("iframe");
+        image.src = api.baseURL+'files/'+ filename;
+    }else{
+        image = document.createElement("iframe");
+        image.src = 'https://view.officeapps.live.com/op/embed.aspx?src=' + api.baseURL+'files/'+ filename;
     }
     image.width = 300;
     image.height = 300;
-    image.src = api.baseURL+'files/'+ filename;
+   
 
     imageDiv.appendChild(image);
 

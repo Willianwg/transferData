@@ -1,5 +1,6 @@
 const multer = require('multer');
 const path = require('path');
+const isSupported  = require('../extensions/supported');
 
 module.exports = {
     storage:multer.diskStorage({
@@ -14,12 +15,10 @@ module.exports = {
     }),
 
     fileFilter:(req,file,callback)=>{
-        const extension = path.extname(file.originalname);
+        const { mimetype } = file;
+        const valid = isSupported(mimetype);
 
-        if(extension !==  ".mp4" && extension !== ".png" && extension !== ".jpg" && extension !== ".pdf"){
-            return callback(null, false);
-        }
-        callback(null, true);
+        callback(null, valid);
     },
 
     limits:{
