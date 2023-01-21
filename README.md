@@ -31,6 +31,7 @@ São aceitos uploads de no máximo 20mb.
 - Texto
 - Imagem
 - Pdf
+- Doc
 - Vídeo mp4
 
 Vídeos, Imagens e Pdf's são apagados após dois minutos de seu upload.
@@ -39,4 +40,6 @@ Vídeos, Imagens e Pdf's são apagados após dois minutos de seu upload.
 
 TransferData é uma aplicação feita para que torne simples a transferencia de textos e imagens entre dispositivos como um computador e um celular, sem a necessidade de qualquer instalação, login ou cadastro.
 
-Completamente sem estilização, apenas funcionalidades.
+
+![image](https://user-images.githubusercontent.com/51550522/213892129-480c5d03-cf81-48b5-995e-d2f9f59d720c.png)
+
